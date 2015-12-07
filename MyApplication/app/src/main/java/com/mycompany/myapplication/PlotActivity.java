@@ -1,5 +1,6 @@
 package com.mycompany.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -135,12 +136,13 @@ public class PlotActivity extends AppCompatActivity {
                     Log.d("SCALE", String.valueOf(progress));
                     Log.d("spinner", String.valueOf(defaultSpinnerPosition));
                     // give data back to Katie intent
-                    Intent graphIntent = new Intent(PlotActivity.this, GraphActivity.class);
-                    graphIntent.putExtra(AGE_RANGE, defaultSpinnerPosition);
-                    graphIntent.putExtra(SCALE, progress);
-                    graphIntent.putExtra(TITLE, titleText);
-                    graphIntent.putExtra(DESCRIPTION, descriptionText);
-                    startActivity(graphIntent);
+                    Intent graphIntent = new Intent();
+                    graphIntent.putExtra("AGE_RANGE", defaultSpinnerPosition);
+                    graphIntent.putExtra("SCALE", progress);
+                    graphIntent.putExtra("TITLE", titleText);
+                    graphIntent.putExtra("DESCRIPTION", descriptionText);
+                    setResult(Activity.RESULT_OK, graphIntent);
+                    finish();
                 }
 
             }
